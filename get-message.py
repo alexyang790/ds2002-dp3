@@ -22,7 +22,8 @@ def delete_message(handle):
 
 def get_message():
     try:
-        oragnized_messages = []
+        sorted_messages = []
+        list_messages = []
         # Receive message from SQS queue. Each message has two MessageAttributes: order and word
         # You want to extract these two attributes to reassemble the message
         for i in range(10): #looping the get message 10 times
@@ -46,25 +47,18 @@ def get_message():
                 handle = response['Messages'][0]['ReceiptHandle']
 
                 #store messages in a dictionary then pass on to a list
-                stored_messages[order] = word
-                oragnized_messages.append(stored_messages)
-                print(oragnized_messages)
-
-                # Print the message attributes - this is what you want to work with to reassemble the message
-                '''print(f"Order: {order}")
-                print(f"Word: {word}")
-                print('------------------')'''
-            
-
-        # If there is no message in the queue, print a message and exit    
+                stored_messages['order'] = order
+                stored_messages['word'] = word
+                list_messages.append(stored_messages)
+                print('organized messages', list_messages)
+                sorted_messages = sorted(list_messages, key=lambda x: x["order"])
+                print('sorted messages',sorted_messages)
         else:
             print("No message in the queue")
             exit(1)
 
-        '''
-        reassembled_message = ' '.join([stored_messages[i] for i in sorted(stored_messages.keys())])
-        print(f"Reassembled Message: {reassembled_message}")
-        print('------------------')'''
+        
+
             
     # Handle any errors that may occur connecting to SQS
     except ClientError as e:

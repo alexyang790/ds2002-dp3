@@ -1,12 +1,10 @@
-messages = [
-    {"order":3, "word":"fox"},
-    {"order":0, "word":"the"},
-    {"order":2, "word":"brown"},
-    {"order":1, "word":"quick"},
-]
+messages = [{'1': 'who'}, {'6': 'about'}, {'9': 'PowerPoint.'}, {'4': "they're"}, {'8': 'need'}, {'7': "don't"}, {'0': 'People'}, {'2': 'know'}, {'3': 'what'}, {'5': 'talking'}]
 
 # Sort the messages by the 'order' key
-sorted_messages = sorted(messages, key=lambda x: x["order"])
+#sorted_messages = sorted(messages, key=lambda x: x.keys())
+print(lambda x:)
+sorted_messages = sorted(messages, key=lambda x: int(list(x.keys())[0]))
+
 print(sorted_messages)
 
 '''
