@@ -52,21 +52,19 @@ def get_message():
                 list_messages.append(stored_messages)
                 #reassemble message logic
                 sorted_messages = sorted(list_messages, key=lambda x: x["order"])
+                #print('sorted messages', sorted_messages)
+            if i = 9:
+                phrase = ''
+                for x in range (10):
+                    phrase = phrase + (sorted_messages[i]['word'] + ' ')
+                print(phrase)
         else:
             print("No message in the queue")
             exit(1)
-
     # Handle any errors that may occur connecting to SQS
     except ClientError as e:
         print(e.response['Error']['Message'])
 
-def get_phrase():
-    phrase = ''
-    for i in range(10):
-        phrase = phrase + (sorted_messages[i]['word']) + ' '
-    print(phrase)
-
 # Trigger the function
 if __name__ == "__main__":
     get_message()
-    get_phrase()
