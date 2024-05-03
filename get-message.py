@@ -24,7 +24,6 @@ def get_message():
     try:
         sorted_messages = []
         list_messages = []
-        phrase = ''
         # Receive message from SQS queue. Each message has two MessageAttributes: order and word
         # You want to extract these two attributes to reassemble the message
         for i in range(10): #looping the get message 10 times
@@ -61,13 +60,13 @@ def get_message():
     except ClientError as e:
         print(e.response['Error']['Message'])
 
-def get_phrase()
+def get_phrase():
+    phrase = ''
     for i in range(10):
         phrase = phrase + (sorted_messages[i]['word']) + ' '
-        print(phrase)
+    print(phrase)
 
 # Trigger the function
 if __name__ == "__main__":
     get_message()
     get_phrase()
-   

@@ -1,29 +1,11 @@
-messages = [
-    {"order":3, "word":"fox"},
-    {"order":0, "word":"the"},
-    {"order":2, "word":"brown"},
-    {"order":1, "word":"quick"},
-]
+messages = [{'order': '0', 'word': 'People'}, {'order': '1', 'word': 'who'}, {'order': '2', 'word': 'know'}, {'order': '3', 'word': 'what'}, {'order': '4', 'word': "they're"}, {'order': '5', 'word': 'talking'}, {'order': '6', 'word': 'about'}, {'order': '7', 'word': "don't"}, {'order': '8', 'word': 'need'}, {'order': '9', 'word': 'PowerPoint.'}]
 
-# Sort the messages by the 'order' key
-sorted_messages = sorted(messages, key=lambda x: x["order"])
 
-# Extract the words in the correct order
-ordered_words = [message["word"] for message in sorted_messages]
-
-# Combine the words into a phrase
-phrase = " ".join(ordered_words)
-
-# Print the phrase
-print(phrase)
-
-print(sorted_messages)
-
-phrase = ''
-for i in range(4):
-    print(i)
-    phrase = phrase + (sorted_messages[i]['word']) + ' '
+def get_phrase():
+    phrase = ''
+    for i in range(10):
+        phrase = phrase + (messages[i]['word']) + ' '
     print(phrase)
 
-for i in range(4):
-    print(i)
+if __name__ == "__main__":
+    get_phrase()
