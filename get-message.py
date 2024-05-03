@@ -7,7 +7,7 @@ import json
 url = "https://sqs.us-east-1.amazonaws.com/440848399208/zy7ts"
 sqs = boto3.client('sqs')
 
-'''
+
 def delete_message(handle):
     try:
         # Delete message from SQS queue
@@ -18,7 +18,7 @@ def delete_message(handle):
         print("Message deleted")
     except ClientError as e:
         print(e.response['Error']['Message'])
-'''
+
 
 def get_message():
     try:
@@ -37,6 +37,7 @@ def get_message():
                     'All'
                 ]
             )
+            print(i)
             # Check if there is a message in the queue or not
             if "Messages" in response:
                 stored_messages = {}
@@ -54,17 +55,16 @@ def get_message():
                 sorted_messages = sorted(list_messages, key=lambda x: x["order"])
                 print('sorted messages', sorted_messages)
                 if i == 9:
-                    print('yay')
+                    print(sorted_messages)
                     phrase = ''
                     for x in range (10):
                         phrase = phrase + (sorted_messages[x]['word'] + ' ')
                     print(phrase)
+                #delete each entry after use
+                delete_message(handle)
             else:
                 print("No message in the queue")
                 exit(1)
-
-            
-        
     # Handle any errors that may occur connecting to SQS
     except ClientError as e:
         print(e.response['Error']['Message'])
@@ -72,3 +72,4 @@ def get_message():
 # Trigger the function
 if __name__ == "__main__":
     get_message()
+    delete_message(handle)
